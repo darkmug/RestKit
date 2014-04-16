@@ -488,7 +488,8 @@ static NSString *RKStringDescribingURLResponseWithData(NSURLResponse *response, 
                                                                                    response:self.HTTPRequestOperation.response
                                                                                        data:self.HTTPRequestOperation.responseData
                                                                         responseDescriptors:self.responseDescriptors];
-    self.responseMapperOperation.targetObject = self.targetObject;
+    // Prevent from mapping response object to an instance of same class from the Request
+    self.responseMapperOperation.targetObject = nil;
     self.responseMapperOperation.mappingMetadata = self.mappingMetadata;
     self.responseMapperOperation.mapperDelegate = self;
     [self.responseMapperOperation setQueuePriority:[self queuePriority]];
